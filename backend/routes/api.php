@@ -3,10 +3,11 @@
 Route::group([
 
     'middleware' => 'api',
-    'prefix' => 'auth'
 
 ], function () {
-
+    Route::get('ok', function(){
+        return 'ok';
+    });
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
