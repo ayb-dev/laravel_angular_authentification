@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from 'src/app/Services/jarwis.service';
+import { TokenService } from 'src/app/Services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,20 @@ export class LoginComponent implements OnInit {
 
   public error = null;
 
-  constructor(private jarwis:JarwisService) { }
+  constructor(
+    private Jarwis:JarwisService,
+    private Token:TokenService
+    ) { }
 
   onSubmit(){
-    this.jarwis.login(this.form).subscribe(
-      data => console.log(data),
+    this.Jarwis.login(this.form).subscribe(
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
+  }
+
+  handleResponse(data){
+    this.Token.handle(data.access_token);
   }
 
   handleError(error){
