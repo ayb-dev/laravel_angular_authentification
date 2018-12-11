@@ -14,7 +14,13 @@ export class JarwisService {
   signup(data){
     return this.http.post(`${this.baseUrl}/signup`, data);
   }
+
   login(data){
     return this.http.post(`${this.baseUrl}/login`, data);
   }
+
+  sendPasswordresetLink(data){
+    return this.http.post(`${this.baseUrl}/sendPasswordresetLink`, data);
+  }
+
 }
